@@ -20,8 +20,8 @@ const calculateFrameScore = (currentFrameIndex, allFrames) => {
 
     currentFrameScore = currentFrame.reduce((attempt, total) => attempt + total, 0)
 
-        if (currentFrameIndex !== allFrames.length - 1) {
-            if (currentFrame.length === 1) {
+    if (currentFrameIndex !== allFrames.length - 1) {
+        if (currentFrame.length === 1) {
             return currentFrameScore += calculateFrameScore(currentFrameIndex + 1, allFrames)
         } 
 
@@ -30,6 +30,7 @@ const calculateFrameScore = (currentFrameIndex, allFrames) => {
             return currentFrameScore += allFrames[currentFrameIndex + 1][0] 
         }
     }
+    
     return currentFrameScore
 }
 
