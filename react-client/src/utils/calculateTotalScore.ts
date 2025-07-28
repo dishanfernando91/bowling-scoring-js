@@ -1,24 +1,11 @@
 const INITIAL_SCORE = 0;
 const MAX_FRAME_SCORE = 10;
 
-const SAMPLE_GAME = [
-    [ 5, 3 ],
-    [ 10 ],
-    [ 4, 6 ],
-    [ 9, 1 ],
-    [ 0, 0 ],
-    [ 10 ],
-    [ 10 ],
-    [ 2, 0],
-    [ 8, 2 ],
-    [ 0, 3 ]
-];
-
-const calculateFrameScore = (currentFrameIndex, allFrames) => {
+export const calculateFrameScore = (currentFrameIndex: number, allFrames: number[][]): number => {
     let currentFrameScore = 0;
     const currentFrame = allFrames[currentFrameIndex];
 
-    currentFrameScore = currentFrame.reduce((attempt, total) => attempt + total, 0);
+    currentFrameScore = currentFrame.reduce((attempt, total) => attempt + total, INITIAL_SCORE);
 
     if (currentFrameIndex !== allFrames.length - 1) {
         if (currentFrame.length === 1) {
@@ -34,10 +21,5 @@ const calculateFrameScore = (currentFrameIndex, allFrames) => {
     return currentFrameScore;
 }
 
-const calculateTotalScore = allFrames => allFrames.reduce((totalScore, _, currentFrameIndex, allFrames) =>
+export const calculateTotalScore = (allFrames: number[][]) => allFrames.reduce((totalScore, _, currentFrameIndex, allFrames) =>
     calculateFrameScore(currentFrameIndex, allFrames) + totalScore, INITIAL_SCORE);
-
-// add custom game data through CLI or use sample
-const finalScore = calculateTotalScore(process.argv[2] ? JSON.parse(process.argv[2]) : SAMPLE_GAME);
-
-console.log(typeof(finalScore));
