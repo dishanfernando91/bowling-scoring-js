@@ -1,20 +1,18 @@
-import './App.css'
+import { useState } from "react";
+
+import MatchStart from "./components/MatchStart";
+import MatchScoreBoard from "./components/Scoreboard/MatchScoreBoard";
+
+import "./App.css";
 
 function App() {
+  const [players, setPlayers] = useState<string[] | undefined>([]);
 
-  return (
-    <>
-    <div>
-      Player 1:
-    </div>
-    <div>
-      Player 1:
-    </div>
-    <div>
-      <input placeholder='Enter score'/>
-    </div>
-    </>
-  )
+  if (players?.length) {
+    return <MatchScoreBoard />;
+  }
+
+  return <MatchStart setPlayers={setPlayers} />;
 }
 
-export default App
+export default App;
